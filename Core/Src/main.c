@@ -1,10 +1,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "i2c.h"
-#include "tim.h"
-#include "usart.h"
-#include "gpio.h"
+
 
 void SystemClock_Config(void);
 
@@ -20,10 +17,16 @@ int main(void)
   MX_I2C1_Init();
   MX_USART1_UART_Init();
   MX_TIM2_Init();
- 
+  
+  maxim_max30102_reset();
+  uint8_t max30102it1;
+  IIC_read(INTS1,&max30102it1);
+  heratRate_Init();
+  static uint32_t r;
   while (1)
   {
-
+    read_FIFO(&r);
+    printf("red=%d\r\n",r);
   }
  
 }

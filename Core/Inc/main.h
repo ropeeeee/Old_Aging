@@ -28,6 +28,13 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
+#include <stdio.h>
+#include "i2c.h"
+#include "tim.h"
+#include "usart.h"
+#include "gpio.h"
+#include "heartRate.h"
+#include "fallDetec.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
