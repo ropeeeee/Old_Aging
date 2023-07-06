@@ -9,8 +9,6 @@ int main(void)
 {
  
   HAL_Init();
-
- 
   SystemClock_Config();
 
   MX_GPIO_Init();
@@ -23,10 +21,18 @@ int main(void)
   IIC_read(INTS1,&max30102it1);
   heratRate_Init();
   static uint32_t r;
+  printf(" begin\r\n");
+  if(init6050())
+  {
+    printf(" Init fail. Exit. \r\n");
+    return 1;
+  }
   while (1)
   {
     read_FIFO(&r);
     printf("red=%d\r\n",r);
+    readDATA(&Fallen);
+    HAL_Delay(300);
   }
  
 }

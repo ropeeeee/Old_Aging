@@ -2,7 +2,7 @@
 
 uint8_t IIC_write(uint8_t addr,uint8_t data)
 {
-
+  HAL_I2C_GetState(&hi2c1);
   if(HAL_I2C_Mem_Write(&hi2c1,WRITEADD,addr,1,&data,1,HAL_MAX_DELAY)!=HAL_OK)
   {
     return 1;
@@ -12,6 +12,7 @@ uint8_t IIC_write(uint8_t addr,uint8_t data)
 
 uint8_t IIC_read(uint8_t addr,uint8_t* data)
 {
+  HAL_I2C_GetState(&hi2c1);
   if(HAL_OK!=HAL_I2C_Mem_Read(&hi2c1,READADD,addr,1,data,1,HAL_MAX_DELAY))
   {
     return 1;
@@ -45,6 +46,7 @@ int heratRate_Init(void)
 
 uint8_t read_FIFO(uint32_t* red)
 {
+  HAL_I2C_GetState(&hi2c1);
   uint8_t raw_data[3];
   uint8_t max30102it;
   IIC_read(INTS1,&max30102it);
